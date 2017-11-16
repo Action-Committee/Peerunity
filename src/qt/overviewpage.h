@@ -25,21 +25,21 @@ public:
     void setModel(WalletModel *model);
 
 public slots:
-    void setBalance(qint64 balance, qint64 stake, qint64 unconfirmedBalance);
+    void setBalance(qint64 available, qint64 maturing, qint64 unconfirmed);
     void setNumTransactions(int count);
 
 signals:
     void transactionClicked(const QModelIndex &index);
 
 protected:
-    void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::OverviewPage *ui;
     WalletModel *model;
-    qint64 currentBalance;
-    qint64 currentStake;
-    qint64 currentUnconfirmedBalance;
+    qint64 currentAvailable;
+    qint64 currentMaturing;
+    qint64 currentUnconfirmed;
 
     TxViewDelegate *txdelegate;
     unsigned int numDisplayedTransactions();
